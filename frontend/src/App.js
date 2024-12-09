@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+class App extends Component {
+  state = {
+    peliculas: []
+  };
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  async componentDidMount() {
+    const response = await fetch('/peliculas');
+    const body = await response.json();
+    this.setState({peliculas: body});
+  }
+
+  render() {
+    const {peliculas: peliculas} = this.state;
+    return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <div className="App-intro">
+              <h2>peliculas</h2>
+              {peliculas.map(pelicula =>
+                  <div key={pelicula.id}>
+                    {pelicula.titulo} - ({pelicula.año})
+                    Guión: {pelicula.trama}
+                  </div>
+              )}
+            </div>
+          </header>
+        </div>
+    );
+  }
 }
-
 export default App;

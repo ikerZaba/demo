@@ -6,7 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement; 
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.List; 
 
 public class GestorBDD {
     Connection c; 
@@ -85,6 +86,34 @@ public class GestorBDD {
             System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
             System.exit(0);
         }
+    }
+
+    public List<Pelicula> getPeliculas() {
+        List<Pelicula> listaPeliculas = new ArrayList<>();
+        Pelicula p;
+        try {
+
+            c = conectar();
+    
+                try (Statement stmt = c.createStatement(); ResultSet rs = stmt.executeQuery( "SELECT * FROM Peliculas;" )) {
+                    
+                    while ( rs.next() ) {
+                        String id = rs.getString("ID_IMDB");
+                        String  titulo = rs.getString("TITULO");
+                        int año  = rs.getInt("AÑO");
+                        String  trama = rs.getString("TRAMA");
+                        
+                        p = new Pelicula(id, titulo, año, trama);
+                        listaPeliculas.add(p);
+                    }
+                }
+            c.close();
+            return listaPeliculas;
+            } catch ( SQLException ex ) {
+                System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+                System.exit(0);
+            }
+        return null;
     }
 
 }
