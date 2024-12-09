@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 class App extends Component {
   state = {
     peliculas: []
@@ -14,12 +16,11 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
             <div className="App-intro">
-              <h2>peliculas</h2>
+              <h2>Películas</h2>
               {peliculas.map(pelicula =>
                   <div key={pelicula.id}>
-                    {pelicula.titulo} - ({pelicula.año})
+                    {pelicula.titulo}  (Año: {pelicula.año})
                     Guión: {pelicula.trama}
                   </div>
               )}
