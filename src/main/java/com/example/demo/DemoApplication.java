@@ -1,7 +1,5 @@
 package com.example.demo;
 
-//import org.springframework.boot.SpringApplication;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,20 +10,29 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-//@SpringBootApplication
+@SpringBootApplication
+@RestController
 public class DemoApplication {
 	private static final GestorBDD gestorBDD = new GestorBDD();
 	private static final String API_KEY = "731e41f";
 	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
 		gestorBDD.crearTablas();
 		ArrayList<Pelicula> peliculas = pedirPeliculasStarWars();
 		gestorBDD.insertarListaPeliculas(peliculas);	
-		gestorBDD.getInfo();		
+		//gestorBDD.getInfo();		
 	}
+
+	@GetMapping("/hello")
+    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+      return String.format("Hello %s!", name);
+    }
 
 
 	private static ArrayList<Pelicula> pedirPeliculasStarWars() {
