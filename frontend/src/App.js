@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+//import { Button,  Table } from 'reactstrap';
 
 class App extends Component {
   state = {
@@ -12,20 +13,30 @@ class App extends Component {
   }
 
   render() {
-    const {peliculas: peliculas} = this.state;
+    const {peliculas}= this.state;
+
+    const listaPeliculas = peliculas.map(pelicula => {
+      return <tr key={pelicula.id}>
+        <td>{pelicula.titulo}</td>
+        <td>{pelicula.año}</td>
+        <td>{pelicula.trama}</td>
+      </tr>
+  });
     return (
         <div className="App">
-          <header className="App-header">
-            <div className="App-intro">
               <h2>Películas</h2>
-              {peliculas.map(pelicula =>
-                  <div key={pelicula.id}>
-                    {pelicula.titulo}  (Año: {pelicula.año})
-                    Guión: {pelicula.trama}
-                  </div>
-              )}
-            </div>
-          </header>
+              <table className="mt-4">
+                <thead>
+                  <tr>
+                  <th width="30%">Título</th>
+                  <th width="10%">Año</th>
+                  <th width="60%">Trama</th>
+                </tr>
+                </thead>                
+                <tbody>
+                  {listaPeliculas}
+                </tbody>
+              </table>
         </div>
     );
   }
