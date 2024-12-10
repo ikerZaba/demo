@@ -8,7 +8,7 @@
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1"
   },
-  "proxy": "http://localhost:8080",
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -35,5 +35,6 @@
   },
   "devDependencies": {
     "web-vitals": "^4.2.4"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }
