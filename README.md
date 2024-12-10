@@ -6,7 +6,9 @@
 - yarn
 
 ## Instrucciones ejecución
-Una vez tenga abierto el proyecto en su IDE de elección, vaya a la terminal o consola del mismo y escriba lo siguiente:
+Una vez tenga abierto el proyecto en su IDE de elección, vaya a la terminal o consola del mismo.  
+Muévase a la dirección del proyecto si no esta en ella.  
+Y escriba lo siguiente:
 
 ```bash
 mvn spring-boot:run
